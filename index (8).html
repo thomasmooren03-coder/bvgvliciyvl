@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BierApp</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f7d774, #f3a847);
+      min-height: 100vh;
+      color: #2d1b00;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 30px auto;
+    }
+
+    .top-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .beer-of-day {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .beer-icon {
+      font-size: 4rem;
+    }
+
+    .beer-details h3 {
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+    }
+
+    .beer-details p {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .rating {
+      color: #d17d00;
+      font-size: 1.2rem;
+      margin-top: 8px;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 12px 14px;
+      border: 2px solid #efc15f;
+      border-radius: 12px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-box button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 12px;
+      background: #8b4d00;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .search-box button:hover {
+      background: #6f3d00;
+    }
+
+    .beer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .beer-card {
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .beer-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 22px rgba(0,0,0,0.14);
+    }
+
+    .beer-card .emoji {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .beer-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .beer-card p {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #ffe2a8;
+      color: #7a4400;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .favorites {
+      margin-top: 35px;
+    }
+
+    .favorites-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .favorite-item {
+      background: #fff4d8;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+      color: #4a2c00;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 800px) {
+      .top-section {
+        grid-template-columns: 1fr;
+      }
+
+      .beer-of-day {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍺 BierApp</h1>
+    <p>Ontdek je favoriete bieren, ratings en stijlen op één plek</p>
+  </header>
+
+  <div class="container">
+    <section class="top-section">
+      <div class="card">
+        <h2>Bier van de dag</h2>
+        <div class="beer-of-day">
+          <div class="beer-icon">🍻</div>
+          <div class="beer-details">
+            <h3>La Trappe Blond</h3>
+            <p><strong>Type:</strong> Blond</p>
+            <p><strong>Alcohol:</strong> 6,5%</p>
+            <p>Een zacht en fris bier met een lichte fruitige smaak en een subtiele bitterheid.</p>
+            <div class="rating">⭐⭐⭐⭐☆</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Zoek een bier</h2>
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Zoek op naam of type..." />
+          <button onclick="filterBeers()">Zoeken</button>
+        </div>
+        <p>Typ bijvoorbeeld: IPA, Blond, Tripel of Heineken</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="margin-bottom: 18px;">Populaire bieren</h2>
+      <div class="beer-grid" id="beerGrid">
+        <div class="beer-card" data-name="Heineken Pilsener" data-type="Pils">
+          <div class="emoji">🍺</div>
+          <h3>Heineken Pilsener</h3>
+          <p><strong>Type:</strong> Pils</p>
+          <p><strong>Alcohol:</strong> 5%</p>
+          <p>Een klassiek en verfrissend bier met een lichte afdronk.</p>
+          <span class="tag">Pils</span>
+        </div>
+
+        <div class="beer-card" data-name="Duvel" data-type="Blond">
+          <div class="emoji">🍺</div>
+          <h3>Duvel</h3>
+          <p><strong>Type:</strong> Blond speciaalbier</p>
+          <p><strong>Alcohol:</strong> 8,5%</p>
+          <p>Vol van smaak met fruitige tonen en een krachtige afdronk.</p>
+          <span class="tag">Blond</span>
+        </div>
+
+        <div class="beer-card" data-name="Leffe Tripel" data-type="Tripel">
+          <div class="emoji">🍻</div>
+          <h3>Leffe Tripel</h3>
+          <p><strong>Type:</strong> Tripel</p>
+          <p><strong>Alcohol:</strong> 8,4%</p>
+          <p>Rijk en kruidig bier met warme mouttonen.</p>
+          <span class="tag">Tripel</span>
+        </div>
+
+        <div class="beer-card" data-name="BrewDog Punk IPA" data-type="IPA">
+          <div class="emoji">🍺</div>
+          <h3>BrewDog Punk IPA</h3>
+          <p><strong>Type:</strong> IPA</p>
+          <p><strong>Alcohol:</strong> 5,4%</p>
+          <p>Fris hoppig bier met citrusachtige aroma’s en bitter karakter.</p>
+          <span class="tag">IPA</span>
+        </div>
+
+        <div class="beer-card" data-name="Westmalle Dubbel" data-type="Dubbel">
+          <div class="emoji">🍻</div>
+          <h3>Westmalle Dubbel</h3>
+          <p><strong>Type:</strong> Dubbel</p>
+          <p><strong>Alcohol:</strong> 7%</p>
+          <p>Donker bier met karamel, mout en zachte bitters.</p>
+          <span class="tag">Dubbel</span>
+        </div>
+
+        <div class="beer-card" data-name="Corona Extra" data-type="Lager">
+          <div class="emoji">🍺</div>
+          <h3>Corona Extra</h3>
+          <p><strong>Type:</strong> Lager</p>
+          <p><strong>Alcohol:</strong> 4,5%</p>
+          <p>Licht en verfrissend bier, populair op zonnige dagen.</p>
+          <span class="tag">Lager</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="favorites">
+      <div class="card">
+        <h2>Favorieten</h2>
+        <div class="favorites-list">
+          <div class="favorite-item">La Trappe Blond</div>
+          <div class="favorite-item">Duvel</div>
+          <div class="favorite-item">Punk IPA</div>
+          <div class="favorite-item">Westmalle Dubbel</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    BierApp demo pagina • Gemaakt in HTML, CSS en JavaScript
+  </footer>
+
+  <script>
+    function filterBeers() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const beers = document.querySelectorAll(".beer-card");
+
+      beers.forEach(beer => {
+        const name = beer.dataset.name.toLowerCase();
+        const type = beer.dataset.type.toLowerCase();
+
+        if (name.includes(input) || type.includes(input)) {
+          beer.style.display = "block";
+        } else {
+          beer.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
